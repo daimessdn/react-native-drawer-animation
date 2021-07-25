@@ -8,6 +8,7 @@ import Main from "./screens/Main";
 export default function App() {
   const [loaded] = useFonts({
     "Work Sans": require("./assets/fonts/WorkSans-Regular.ttf"),
+    "Work Sans Bold": require("./assets/fonts/WorkSans-Bold.ttf"),
   });
 
   return loaded ? <Main /> : <AppLoading />;

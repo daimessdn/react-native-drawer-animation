@@ -10,11 +10,17 @@ import {
   Easing,
 } from "react-native";
 
+import { Entypo } from "@expo/vector-icons";
+
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
 const Main = () => {
+  // drawer open state
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // current menu state
+  const [currentMenu, setCurrentMenu] = useState("Home");
 
   // animation state
   const scale = useRef(new Animated.Value(1)).current;
@@ -47,7 +53,7 @@ const Main = () => {
 
   return (
     <>
-      <StatusBar hidden />
+      <StatusBar barStyle="light-content" translucent={false} />
 
       <View
         style={
@@ -76,44 +82,98 @@ const Main = () => {
             borderRadius,
           }}
         >
-          <TouchableOpacity
+          <View
             style={{
-              margin: 10,
-              padding: 10,
-              backgroundColor: "#ff0022",
-              alignSelf: "flex-start",
-              borderRadius: 10,
-              elevation: 3,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
-            onPress={() => openDrawer(!drawerOpen)}
           >
-            <Text
+            <TouchableOpacity
               style={{
-                textAlign: "center",
-                color: "#fff",
-                fontFamily: "Work Sans",
+                padding: 10,
+                width: width / 10,
+              }}
+              onPress={() => openDrawer(!drawerOpen)}
+            >
+              <Entypo name="menu" size={24} color="black" />
+            </TouchableOpacity>
+
+            <View
+              style={{
+                width: (width * 8) / 10,
+                alignItems: "center",
               }}
             >
-              Click me!
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  fontFamily: "Work Sans Bold",
+                  fontSize: 18,
+                  fontWeight: "800",
+                }}
+              >
+                {currentMenu}
+              </Text>
+            </View>
+            <View style={{ width: width / 10, height: 10 }} />
+          </View>
         </Animated.View>
 
         <View style={styles.drawerMenu}>
-          <TouchableOpacity style={{ marginBottom: 15, }} onPress={() => { openDrawer(!drawerOpen) }}>
-            <Text style={{ color: "#fff", fontFamily: "Work Sans", fontSize: 18, color: "#FABC3C" }}>
+          <TouchableOpacity
+            style={{ marginBottom: 20 }}
+            onPress={() => {
+              setCurrentMenu("Home");
+              openDrawer(!drawerOpen);
+            }}
+          >
+            <Text
+              style={{
+                color: currentMenu === "Home" ? "#FABC3C" : "#fff",
+                fontFamily:
+                  currentMenu === "Home" ? "Work Sans Bold" : "Work Sans",
+                fontSize: 18,
+              }}
+            >
               Home
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={{ marginBottom: 15, }} onPress={() => { openDrawer(!drawerOpen) }}>
-            <Text style={{ color: "#fff", fontFamily: "Work Sans", fontSize: 18 }}>
+          <TouchableOpacity
+            style={{ marginBottom: 20 }}
+            onPress={() => {
+              setCurrentMenu("Orders");
+              openDrawer(!drawerOpen);
+            }}
+          >
+            <Text
+              style={{
+                color: currentMenu === "Orders" ? "#FABC3C" : "#fff",
+                fontFamily:
+                  currentMenu === "Orders" ? "Work Sans Bold" : "Work Sans",
+                fontSize: 18,
+              }}
+            >
               Orders
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={{ marginBottom: 15, }} onPress={() => { openDrawer(!drawerOpen) }}>
-            <Text style={{ color: "#fff", fontFamily: "Work Sans", fontSize: 18 }}>
+          <TouchableOpacity
+            style={{ marginBottom: 20 }}
+            onPress={() => {
+              setCurrentMenu("Profile");
+              openDrawer(!drawerOpen);
+            }}
+          >
+            <Text
+              style={{
+                color: currentMenu === "Profile" ? "#FABC3C" : "#fff",
+                fontFamily:
+                  currentMenu === "Profile" ? "Work Sans Bold" : "Work Sans",
+                fontWeight: "500",
+                fontSize: 18,
+              }}
+            >
               Profile
             </Text>
           </TouchableOpacity>
@@ -128,6 +188,5 @@ export default Main;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
 });
