@@ -10,7 +10,7 @@ import {
   Easing,
 } from "react-native";
 
-import { Entypo } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -92,16 +92,21 @@ const Main = () => {
             <TouchableOpacity
               style={{
                 padding: 10,
-                width: width / 10,
+                width: (width * 2) / 10,
+                alignContent: "flex-end",
               }}
               onPress={() => openDrawer(!drawerOpen)}
             >
-              <Entypo name="menu" size={24} color="black" />
+              <Ionicons
+                name={drawerOpen ? "close" : "menu"}
+                size={30}
+                color="black"
+              />
             </TouchableOpacity>
 
             <View
               style={{
-                width: (width * 8) / 10,
+                width: (width * 6) / 10,
                 alignItems: "center",
               }}
             >
@@ -115,7 +120,17 @@ const Main = () => {
                 {currentMenu}
               </Text>
             </View>
-            <View style={{ width: width / 10, height: 10 }} />
+            <View style={{ width: (width * 2) / 10, height: 10 }} />
+          </View>
+
+          <View style={{ marginTop: 5, padding: 15 }}>
+            {currentMenu === "Home" ? (
+              <Text>Home</Text>
+            ) : currentMenu === "Orders" ? (
+              <Text>Order your foods here!</Text>
+            ) : (
+              <Text>Here's your profile</Text>
+            )}
           </View>
         </Animated.View>
 
