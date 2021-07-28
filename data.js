@@ -47,3 +47,33 @@ export const foodMenu = [
     name: "Beverages",
   },
 ];
+
+export const breakfastMenu = [
+  {
+    id: "1",
+    name: "Lontong Sayur",
+    image: require("./assets/food-menu/6099df69ead68.jpeg"),
+    price: 15000,
+    rating: 4.6,
+    store: "Warung Tupat Bu Sri",
+    location: "Pamulang, Banten"
+  },
+  {
+    id: "2",
+    name: "Bubur Ayam Gempor",
+    image: require("./assets/food-menu/5f09e008e7fee.jpg"),
+    price: 12000,
+    rating: 4.5,
+    store: "Bubur Ayam Tasik Kang Maman",
+    location: "Depok, West Java"
+  },
+  {
+    id: "3",
+    name: "Nasi Uduk Betawi",
+    image: require("./assets/food-menu/6032066dc88e0.jpg"),
+    price: 13000,
+    rating: 4.3,
+    store: "Warung Nasi Uduk Bu Irma",
+    location: "Bogor, West Java"
+  }
+]

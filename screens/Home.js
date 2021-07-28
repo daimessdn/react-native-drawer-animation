@@ -7,9 +7,12 @@ import {
   Dimensions,
   View,
   TouchableOpacity,
+  ScrollView,
+  VirtualizedList,
 } from "react-native";
+import Star from "../assets/svg/Star";
 
-import { foodMenu, restaurants } from "../data";
+import { breakfastMenu, foodMenu, restaurants } from "../data";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -18,16 +21,12 @@ const Icon1 = foodMenu[0].icon;
 
 const Home = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.placeSection}>
         <Text style={styles.sectionTitle}>Food court nearby.</Text>
 
-        <FlatList
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={restaurants}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item, index }) => (
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {restaurants.map((item, index) => (
             <TouchableOpacity key={index} style={styles.restaurantItem}>
               <Image
                 source={item.imageUri}
@@ -39,22 +38,15 @@ const Home = () => {
                 <Text style={styles.restauranItemText}>{item.location}</Text>
               </View>
             </TouchableOpacity>
-          )}
-        />
+          ))}
+        </ScrollView>
       </View>
 
-      <View>
-        <Text style={styles.sectionTitle}>Find your favorite food</Text>
-        <FlatList
-          horizontal
-          style={styles.menuOptions}
-          data={foodMenu}
-          contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: "space-between",
-          }}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item, index }) => {
+      <Text style={styles.sectionTitle}>Find your favorite food</Text>
+
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {
+          foodMenu.map((item, index) => {
             const Icon = item.icon;
 
             return (
@@ -63,22 +55,75 @@ const Home = () => {
                 <Text style={styles.iconText}>{item.name}</Text>
               </TouchableOpacity>
             );
-          }}
+          })
+        }
+      </ScrollView>
+
+      <View style={{ marginBottom: 100 }}>
+        <Text style={styles.sectionTitle}>Time for breakfast</Text>
+        <Text style={styles.sectionSubtitle}>Enjoy your breakfast with these appetizing foods.</Text>
+
+        {/* <FlatList
+          showsVerticalScrollIndicator={false}
+          data={breakfastMenu}
+          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+          keyExtractor={item => item.id}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity style={styles.breakfastMenuItem}>
+              <Image source={item.image} style={styles.breakfastMenuImage} />
+
+              <View style={styles.breakfastMenuInfoSection}>
+                <View style={styles.rating}>
+                  <Star height={10} width={10} style={{ marginRight: 5 }} />
+                  <Text style={styles.breakfastMenuText}>{item.rating}</Text>
+                </View>
+                <Text style={styles.breakfastMenuTitle}>{item.name}</Text>
+                <Text style={styles.breakfastMenuText}>{item.store}</Text>
+                <Text style={styles.breakfastMenuText}>{item.location}</Text>
+              </View>
+            </TouchableOpacity>
+          )}
         />
+         */}
+
+        {
+          breakfastMenu.map((item, index) => (
+            <TouchableOpacity style={[styles.breakfastMenuItem, { marginBottom: 10 }]} key={index}>
+              <Image source={item.image} style={styles.breakfastMenuImage} />
+
+              <View style={styles.breakfastMenuInfoSection}>
+                <View style={styles.rating}>
+                  <Star height={10} width={10} style={{ marginRight: 5 }} />
+                  <Text style={styles.breakfastMenuText}>{item.rating}</Text>
+                </View>
+                <Text style={styles.breakfastMenuTitle}>{item.name}</Text>
+                <Text style={styles.breakfastMenuText}>{item.store}</Text>
+                <Text style={styles.breakfastMenuText}>{item.location}</Text>
+              </View>
+            </TouchableOpacity>
+          ))
+        }
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 export default Home;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+
+  },
   sectionTitle: {
     fontFamily: "Work Sans Bold",
     fontWeight: "800",
     fontSize: 17,
     marginVertical: 10,
+  },
+  sectionSubtitle: {
+    fontFamily: "Work Sans",
+    marginTop: -10,
+    marginBottom: 10
   },
   restaurantItem: {
     width: 202,
@@ -110,8 +155,38 @@ const styles = StyleSheet.create({
   menuItem: {
     justifyContent: "center",
     alignItems: "center",
+    width: (width - 30) / 4
   },
   iconText: {
     fontFamily: "Work Sans",
   },
+  breakfastMenuItem: {
+    width: width - 30,
+    flexDirection: "row",
+    borderColor: "#000",
+    borderWidth: 1,
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  breakfastMenuImage: {
+    width: ((width - 30) / 2) - 40,
+    height: 100
+  },
+  breakfastMenuInfoSection: {
+    width: ((width - 30) / 2) + 40,
+    padding: 10
+  },
+  breakfastMenuTitle: {
+    fontFamily: "Work Sans Bold",
+    fontWeight: "800"
+  },
+  breakfastMenuText: {
+    fontFamily: "Work Sans",
+  },
+  rating: {
+    position: "absolute",
+    top: 10, right: 10,
+    flexDirection: "row",
+    alignItems: "center"
+  }
 });
