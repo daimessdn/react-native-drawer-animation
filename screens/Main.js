@@ -71,7 +71,7 @@ const Main = () => {
       >
         <Animated.View
           style={{
-            backgroundColor: "#eee",
+            backgroundColor: "#fff",
             height: height,
             width: width,
             position: "absolute",
