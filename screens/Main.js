@@ -15,6 +15,8 @@ import { Ionicons } from "@expo/vector-icons";
 // screen components
 import Home from "./Home";
 import Orders from "./Orders";
+import Profile from "./Profile";
+import UserIcon from "../assets/svg/User";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -115,15 +117,26 @@ const Main = () => {
                 alignItems: "center",
               }}
             >
-              <Text
-                style={{
-                  fontFamily: "Work Sans Bold",
-                  fontSize: 18,
-                  fontWeight: "800",
-                }}
-              >
-                {currentMenu}
-              </Text>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                {
+                  currentMenu === "Profile" && (
+                    <UserIcon
+                      width={20}
+                      height={20}
+                      style={{ marginRight: 10 }}
+                    />
+                  )
+                }
+                <Text
+                  style={{
+                    fontFamily: "Work Sans Bold",
+                    fontSize: 18,
+                    fontWeight: "800",
+                  }}
+                >
+                  {currentMenu}
+                </Text>
+              </View>
             </View>
             <View style={{ width: (width * 2) / 10, height: 10 }} />
           </View>
@@ -134,7 +147,7 @@ const Main = () => {
             ) : currentMenu === "Orders" ? (
               <Orders />
             ) : (
-              <Text>Here's your profile</Text>
+              <Profile />
             )}
           </View>
         </Animated.View>

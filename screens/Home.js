@@ -8,7 +8,6 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  VirtualizedList,
 } from "react-native";
 import Star from "../assets/svg/Star";
 
