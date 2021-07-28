@@ -76,4 +76,48 @@ export const breakfastMenu = [
     store: "Warung Nasi Uduk Bu Irma",
     location: "Bogor, West Java"
   }
+];
+
+export const orderInProgress = [
+  {
+    id: "1",
+    name: "Bubur Ayam Gempor",
+    store: "Bubur Ayam Tasik Kang Maman",
+    location: "Depok, West Java"
+  },
+]
+
+export const ordersHistory = [
+  {
+    id: "1",
+    name: "Sate Ayam Pinggiran",
+    dateOrdered: 1627481997,
+    store: "Warung Sate Pinggiran",
+    location: "Bogor, West Java",
+    userRating: 5
+  },
+  {
+    id: "2",
+    name: "Sate Padang 1 Porsi",
+    dateOrdered: 1627376532,
+    store: "Sate Padang Bang Bastian",
+    location: "Pamulang, South Tangerang, Banten",
+    userRating: 5
+  },
+  {
+    id: "3",
+    name: "Mie Ayam Pangsit + Bakso",
+    dateOrdered: 1627437209,
+    store: "Mie Ayam Indohome",
+    location: "Ciputat, South Tangerang, Banten",
+    userRating: 4
+  },
+  {
+    id: "4",
+    name: "Pempek 5 pcs",
+    dateOrdered: 1627355612,
+    store: "Waroeng Ampera Pempek",
+    location: "Depok, West Java",
+    userRating: 5
+  },
 ]

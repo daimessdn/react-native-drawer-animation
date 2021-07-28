@@ -17,8 +17,6 @@ import { breakfastMenu, foodMenu, restaurants } from "../data";
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-const Icon1 = foodMenu[0].icon;
-
 const Home = () => {
   return (
     <ScrollView style={styles.container}>
@@ -50,7 +48,7 @@ const Home = () => {
             const Icon = item.icon;
 
             return (
-              <TouchableOpacity style={styles.menuItem}>
+              <TouchableOpacity key={index} style={styles.menuItem}>
                 <Icon height={40} width={40} />
                 <Text style={styles.iconText}>{item.name}</Text>
               </TouchableOpacity>
@@ -62,29 +60,6 @@ const Home = () => {
       <View style={{ marginBottom: 100 }}>
         <Text style={styles.sectionTitle}>Time for breakfast</Text>
         <Text style={styles.sectionSubtitle}>Enjoy your breakfast with these appetizing foods.</Text>
-
-        {/* <FlatList
-          showsVerticalScrollIndicator={false}
-          data={breakfastMenu}
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-          keyExtractor={item => item.id}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity style={styles.breakfastMenuItem}>
-              <Image source={item.image} style={styles.breakfastMenuImage} />
-
-              <View style={styles.breakfastMenuInfoSection}>
-                <View style={styles.rating}>
-                  <Star height={10} width={10} style={{ marginRight: 5 }} />
-                  <Text style={styles.breakfastMenuText}>{item.rating}</Text>
-                </View>
-                <Text style={styles.breakfastMenuTitle}>{item.name}</Text>
-                <Text style={styles.breakfastMenuText}>{item.store}</Text>
-                <Text style={styles.breakfastMenuText}>{item.location}</Text>
-              </View>
-            </TouchableOpacity>
-          )}
-        />
-         */}
 
         {
           breakfastMenu.map((item, index) => (

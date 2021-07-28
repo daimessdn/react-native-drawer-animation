@@ -14,6 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 // screen components
 import Home from "./Home";
+import Orders from "./Orders";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -77,6 +78,7 @@ const Main = () => {
             position: "absolute",
             top: 0,
             left: 0,
+            overflow: "hidden",
             right: 0,
             bottom: 0,
             zIndex: 100,
@@ -130,7 +132,7 @@ const Main = () => {
             {currentMenu === "Home" ? (
               <Home />
             ) : currentMenu === "Orders" ? (
-              <Text>Order your foods here!</Text>
+              <Orders />
             ) : (
               <Text>Here's your profile</Text>
             )}
