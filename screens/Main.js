@@ -12,6 +12,9 @@ import {
 
 import { Ionicons } from "@expo/vector-icons";
 
+// screen components
+import Home from "./Home";
+
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
@@ -68,7 +71,7 @@ const Main = () => {
       >
         <Animated.View
           style={{
-            backgroundColor: "#fff",
+            backgroundColor: "#eee",
             height: height,
             width: width,
             position: "absolute",
@@ -123,9 +126,9 @@ const Main = () => {
             <View style={{ width: (width * 2) / 10, height: 10 }} />
           </View>
 
-          <View style={{ marginTop: 5, padding: 15 }}>
+          <View style={{ marginTop: 5, marginLeft: 15 }}>
             {currentMenu === "Home" ? (
-              <Text>Home</Text>
+              <Home />
             ) : currentMenu === "Orders" ? (
               <Text>Order your foods here!</Text>
             ) : (
